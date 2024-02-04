@@ -1,8 +1,6 @@
 terraform {
 
-  resource "aws_s3_bucket" "mybucket"{
-   bucket = "kafka-dsti-s3-bucket"
-  }
+  
   required_version = ">=0.13.0"
   required_providers {
     aws = {
