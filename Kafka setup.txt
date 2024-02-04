@@ -1,0 +1,64 @@
+
+
+ wget https://downloads.apache.org/kafka/3.6.1/kafka_2.13-3.6.1.tgz 
+
+tar -xvf kafka_2.13-3.6.1.tgz 
+
+
+
+  wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.rpm
+
+sudo rpm -ivh jdk-21_linux-x64_bin.rpm
+
+java -version
+
+Starting Zookeeper 
+----------------------
+
+cd kafka_2.13-3.6.1
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+allocate memory to Kafka server
+-----------------------------------  open a new cmd and connec to ec2 instance
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+
+ cd kafka_2.13-3.6.1/
+
+bin/kafka-server-start.sh config/server.properties
+
+I have to change the EC2 instance DNS to public DNS for information exchange
+----------------------------------------------------------
+
+sudo nano config/server.properties
+
+We need to allow security to let in inbound traffic from our machine
+--------------------------------------------------------------------
+Security -> security group and allow inbound traffic from all traffic and my IP for local machine
+
+
+
+Creating a kafka topic 
+--------------------------- on a new ssh client to your ec2 instance
+
+cd kafka_2.13-3.6.1/
+
+bin/kafka-topics.sh --create --topic topicmin --bootstrap-server 13.49.222.88:9092 --replication-factor 1 --partitions 1
+
+
+Now we can Start a producer 
+--------------------------
+cd kafka_2.13-3.6.1/
+
+bin/kafka-console-producer.sh --topic topicmin --bootstrap-server 13.49.222.88:9092
+
+Start Consumer:
+-------------------------
+Duplicate the session & enter in a new console --
+cd kafka_2.13-3.6.1/
+bin/kafka-console-consumer.sh --topic topicmin --bootstrap-server 13.49.222.88:9092
+
+
+
+
+
