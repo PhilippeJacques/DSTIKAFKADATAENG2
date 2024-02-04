@@ -1,5 +1,12 @@
 terraform {
 
+backend "s3" {
+    bucket         = "kafka-dsti-s3-bucket"
+    key            = "tf-infra/terraform.tfstate"
+    region         = "eu-north-1"
+    dynamodb_table = "terraform-state-locking"
+    encrypt        = true
+  }
   
   required_version = ">=0.13.0"
   required_providers {
