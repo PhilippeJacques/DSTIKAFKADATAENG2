@@ -1,4 +1,7 @@
 terraform {
+ 
+
+
   required_version = ">=0.13.0"
   required_providers {
     aws = {
@@ -7,6 +10,8 @@ terraform {
     }
   }
 }
+
+
 
 provider "aws" {
     region ="eu-north-1"
