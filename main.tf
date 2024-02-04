@@ -1,10 +1,8 @@
 terraform {
 
 backend "s3" {
-    bucket         = "kafka-dsti-sbucket-bucket"
     key            = "tf-infra/terraform.tfstate"
     region         = "eu-north-1"
-    dynamodb_table = "terraform-state-locking"
     encrypt        = true
   }
   
