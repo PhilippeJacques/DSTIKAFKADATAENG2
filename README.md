@@ -16,6 +16,7 @@ Each steps have a screen shot available in the screenshot folder
 - An aws account is needed
 -Install terraform onyour local pc and put in the environment variable path precisely
 -You need a google collab account to run the kafka producer and consumer codes
+-you will need a terraform account which you will integrate to AWS to github oauth
 -you willneed a github account for the deployment too 
 
 ## Requirements
@@ -36,6 +37,11 @@ The source here is the https://jsonplaceholder.typicode.com/todos/1  api which I
 ## Developer Guide
 If I was to continue as a developer with the work you've just done, which things are essential for me to know in order to be able to do so?
 Can you provide with step-by-step assistance of what you've done so far with detailed screenshots? If something is not working as it should, this a good place to state that as well.
+
+The last step reamining is deploying to terraform with aws integration, the apply works very well but the plan has a last configuration for it to be valid, it has the following error : 
+Error: error creating DynamoDB Table: ResourceInUseException: Table already exists: terraform-state-locking
+Error: Error creating S3 bucket: BucketAlreadyOwnedByYou: Your previous request to create the named bucket succeeded and you already own it. status code: 409, request id: HFEFVRG8M6FSHH2M, host id: xMu/DHAvIsbJVkzxnjANdUvYA2NKRrIg4f6rKGMn2PCb18KY8vnwadWfCkQb8g0mu5/+9kpXeSc=
+
 
 
 # Author

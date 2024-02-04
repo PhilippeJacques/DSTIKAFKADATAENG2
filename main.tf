@@ -15,12 +15,6 @@ backend "s3" {
   }
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-bucket = "kafka-dsti-sbucket-bucket-bucket"
-
-}
-
-
 provider "aws" {
 access_key = "AKIAXGBHF2NRWIZPXEFE"
 secret_key = "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"
