@@ -7,14 +7,6 @@ bucket = "kafka-dsti-s3-bucket"
 region = "eu-north-1"
 encrypt = true
 }
- 
-cloud {
-    organization = "philippe123"
-
-    workspaces {
-      name = "mememe"
-    }
-  }
   required_version = ">=0.13.0"
   required_providers {
     aws = {
