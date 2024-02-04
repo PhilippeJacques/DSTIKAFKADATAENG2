@@ -14,10 +14,6 @@ backend "s3" {
     }
   }
 }
-resource "aws_dynamodb_table" "terraform_locks" {
-name = "terri-terraform-state-locking"
-
-}
 
 resource "aws_s3_bucket" "terraform_state" {
 bucket = "kafka-dsti-sbucket-bucket-bucket"
