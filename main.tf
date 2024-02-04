@@ -15,7 +15,7 @@ backend "s3" {
   }
 }
 resource "aws_dynamodb_table" "terraform_locks" {
-dynamodb_table = "terri-terraform-state-locking"
+name = "terri-terraform-state-locking"
 
 }
 
