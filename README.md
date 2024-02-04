@@ -42,7 +42,42 @@ The last step reamining is deploying to terraform with aws integration, the appl
 Error: error creating DynamoDB Table: ResourceInUseException: Table already exists: terraform-state-locking
 Error: Error creating S3 bucket: BucketAlreadyOwnedByYou: Your previous request to create the named bucket succeeded and you already own it. status code: 409, request id: HFEFVRG8M6FSHH2M, host id: xMu/DHAvIsbJVkzxnjANdUvYA2NKRrIg4f6rKGMn2PCb18KY8vnwadWfCkQb8g0mu5/+9kpXeSc=
 
+These errors could be seen in the terraform errors shot in the screenshot folder
 
+Firstly, you have to delete the labmda and s3bucket resources in your aws account
+then you specify them in the main.tf file 
+you also have to specify the lambda policy using the following config 
+    data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "iam_for_lambda" {
+  name               = "iam_for_lambda"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+resource "aws_lambda_function" "test_lambda" {
+  filename      = "lambda_function_payload.zip"
+  function_name = "lambda_function_name"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "index.test"
+  runtime       = "nodejs18.x"
+
+  ephemeral_storage {
+    size = 10240 # Min 512 MB and the Max 10240 MB
+  }
+}
+
+after this you rerun the integration in terraform cloud it should work fine
 
 # Author
 OUC-HOUANG FOGOUM PHILIPPE JACQUES, DSTI DATA engineering S23
