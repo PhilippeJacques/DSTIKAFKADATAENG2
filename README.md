@@ -1,5 +1,5 @@
 
-# Option ? - Real-time Data Analytics Pipeline
+#  Real-time Data Analytics Pipeline
 ## Description
 My solution uses python on google collab to get data from the https://jsonplaceholder.typicode.com/todos/1 api which yields a json response.
 
